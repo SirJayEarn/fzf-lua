@@ -134,6 +134,27 @@ vim.api.nvim_set_keymap('n', '<c-P>',
     { noremap = true, silent = true })
 ```
 
+### Filtering files
+
+To do a `grep` that is at the same time filtered via filename or path `live_grep_glob` can be used.
+This allows the use of the `--glob` option in rg.
+By default the separator between a search query and the glob options is ` --` (space dash dash).
+It can be configured via the `grep.glob_separator` option.
+
+This is how it would be used:
+
+1. Execute the command `:FzfLua live_grep_glob`
+2. Type your search, separated by the glob_separator. `Rg> my search term --my-glob-pattern`
+
+Let's say in your project all test files are named in this style: `<name>.spec.<ext>`.
+To find all test files that import the `@testing-library/react-hooks` library type:
+
+`Rg> @testing-library/react-hooks --*.spec.*`
+
+To find usages of the `Partial` utility type in any TypeScript or TypeScript-React files type:
+
+`Rg> Partial --*.ts *.tsx`
+
 ## Commands
 
 ### Buffers and Files
